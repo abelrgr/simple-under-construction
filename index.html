@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Under Construction</title>
+    <style>
+      body{font-family:Arial,sans-serif;margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f7f7f7;color:#333}.container{text-align:center}.message{font-size:24px;font-weight:bold;margin-bottom:20px}.light-mode{background-color:#fff;color:#333}.dark-mode{background-color:#333;color:#fff}svg{width:100px;height:100px}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <svg viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#020202" stroke-miterlimit="10" stroke-width="16.845px">
+          <line class="cls-1" x1="80.344" x2="80.344" y1="97.631" y2="55.563"/>
+          <line class="cls-1" x1="130.79" x2="130.79" y1="97.631" y2="55.563"/>
+          <line class="cls-1" x1="71.878" x2="38.187" y1="131.32" y2="131.32"/>
+          <line class="cls-1" x1="172.95" x2="139.26" y1="131.32" y2="131.32"/>
+          <path class="cls-1" d="m181.33 131.32a75.847 75.847 0 0 0-75.759-75.759 75.847 75.847 0 0 0-75.759 75.759 16.757 16.757 0 0 0-16.581 19.667 17.639 17.639 0 0 0 17.639 14.023h149.93a17.639 17.639 0 0 0 17.639-14.023 16.757 16.757 0 0 0-17.11-19.667z"/>
+          <path class="cls-1" d="m38.187 165.01h134.76v8.8194a67.381 67.381 0 0 1-67.381 66.94 67.381 67.381 0 0 1-67.381-67.381v-8.8194z"/>
+        </g>
+      </svg>
+      <div class="message">Site Under Construction</div>
+    </div>
+
+    <script>
+      function checkThemePreference() {
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.body.classList.remove(prefersDarkScheme ? "light-mode" : "dark-mode");
+        document.body.classList.add(prefersDarkScheme ? "dark-mode" : "light-mode");
+        document.querySelector("g").attributes.stroke.value = prefersDarkScheme ? "#fff" : "#020202";
+      }
+      
+      window.onload = checkThemePreference;
+    </script>
+  </body>
+</html>
