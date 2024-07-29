@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Under Construction</title>
     <style>
-      body{font-family:Arial,sans-serif;margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f7f7f7;color:#333}.container{text-align:center}.message{font-size:24px;font-weight:bold;margin-bottom:20px}.light-mode{background-color:#fff;color:#333}.dark-mode{background-color:#333;color:#fff}svg{width:100px;height:100px}
+      body{font-family:Arial,sans-serif;margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100vh;background-color:#f7f7f7;color:#333}.container{text-align:center}.message{font-size:24px;font-weight:bold;margin-bottom:20px}.light-mode{background-color:#fff;color:#333}.dark-mode{background-color:#333;color:#fff}svg{width:100px;height:100px}#date{font-size:12px;margin-top:20px;color:#666;font-weight:bold;text-align: center;}
     </style>
   </head>
   <body>
@@ -21,17 +21,36 @@
         </g>
       </svg>
       <div class="message">Site Under Construction</div>
+      <div id="date"></div>
     </div>
 
     <script>
-      function checkThemePreference() {
+      // Set the date we're counting down to (format: Month Day, Year HH:MM:SS)
+      const releaseDate = "Jan 1, 2026 00:00:00";
+
+      function setupPage() {
         const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.body.classList.remove(prefersDarkScheme ? "light-mode" : "dark-mode");
         document.body.classList.add(prefersDarkScheme ? "dark-mode" : "light-mode");
         document.querySelector("g").attributes.stroke.value = prefersDarkScheme ? "#fff" : "#020202";
+
+      const countDownDate = new Date(releaseDate).getTime();
+        function updateDate() {
+          const now = new Date().getTime();
+          const distance = countDownDate - now;
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById("date").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        const x = setInterval(updateDate);
+
+        updateDate();
       }
       
-      window.onload = checkThemePreference;
+      window.onload = setupPage;
     </script>
   </body>
 </html>
